@@ -1,0 +1,23 @@
+# Files and directories to ignore in the Laravel project root
+/node_modules
+/vendor
+.env
+.env.*
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+
+# Ignore the storage directory, which can be regenerated from other sources
+/public/storage
+
+# Ignore the composer lock file, as dependencies can be regenerated using composer.json
+composer.lock
+
+# Ignore any other build artifacts and logs
+public/build
+public/mix-manifest.json
+storage/logs/*.log
+
+.idea/
+.vscode/
