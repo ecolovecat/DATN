@@ -6,18 +6,22 @@ use App\Http\Controllers\Controller;
 use App\Repositories\Brand\BrandInterface;
 use App\Repositories\Category\CategoryInterface;
 use App\Repositories\Product\ProductInterface;
+use App\Repositories\RecomendSystem\RecomendedInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
     private $productRepository;
     private $categoryRepository;
     private $brandRepository;
-    public function __construct(ProductInterface $productRepos, CategoryInterface $categoryRepos, BrandInterface $brandRepos)
+    private $recomendedRepository;
+    public function __construct(ProductInterface $productRepos, CategoryInterface $categoryRepos, BrandInterface $brandRepos, RecomendedInterface $recomendedRepos)
     {
         $this->productRepository = $productRepos;
         $this->categoryRepository = $categoryRepos;
         $this->brandRepository = $brandRepos;
+        $this->recomendedRepository = $recomendedRepos;
     }
 
     /**
@@ -47,12 +51,16 @@ class ProductController extends Controller
 
     public function product_detail(Request $request)
     {
+        $userId = Auth::user();
+        $suggest = $this->recomendedRepository->recommendProducts($userId->id,$request->id, 3);
         $product = $this->productRepository->find($request->id);
+        $suggestProduct = $this->productRepository->getProducts($suggest);
         $productsInCategory = $this->productRepository->getProductSameCategory($product->category_id, $request->id);
+        $combinedProducts = $productsInCategory->merge($suggestProduct)->unique('id');
         $category = $this->categoryRepository->find($product->category_id);
         $brand = $this->brandRepository->find($product->brand_id);
         $quantity = $product->quantity;
-        return view('client.layouts.product_detail', compact('product', 'category', 'brand', 'quantity', 'productsInCategory'));
+        return view('client.layouts.product_detail', compact('product', 'category', 'brand', 'quantity', 'combinedProducts'));
     }
     /**
      * Show the form for creating a new resource.

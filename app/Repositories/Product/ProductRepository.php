@@ -16,6 +16,11 @@ class ProductRepository extends EloquentRepository implements ProductInterface
         return $this->_model::where('is_hot', 1)->where('quantity', '>', 0)->take(5)->get();
     }
 
+    public function getProducts($pIds)
+    {
+        return $this->_model::whereIn('id', $pIds)->where('quantity', '>', 0)->take(5)->get();
+    }
+
     public function getTopHotProduct($top)
     {
         return $this->_model::where('is_hot', 1)->where('is_deleted', 0)->where('quantity', '>', 0)->take($top)->get();

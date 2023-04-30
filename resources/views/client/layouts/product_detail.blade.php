@@ -88,7 +88,7 @@
                     </div>
                 </div>
             </div>
-            @foreach($productsInCategory as $key => $product)
+            @foreach($combinedProducts as $key => $product)
             <div class="col-lg-3 col-md-6 special-grid top-hot">
                 <div class="products-single fix">
                     <div class="card">

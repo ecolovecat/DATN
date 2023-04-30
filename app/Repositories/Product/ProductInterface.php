@@ -4,6 +4,7 @@ namespace App\Repositories\Product;
 interface ProductInterface
 {
     public function getProduct();
+    public function getProducts($pIds);
     public function getTopHotProduct($top);
     public function getTopNewProduct($top);
     public function getTopSaleProduct($top);
