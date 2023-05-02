@@ -111,7 +111,7 @@ $('document').ready(function(){
 	   Owl Carousel Instagram Feed
 	   ................................................. */
 
-	$('.main-instagram').owlCarousel({
+	$('.main-brand').owlCarousel({
 		loop: true,
 		margin: 0,
 		dots: false,

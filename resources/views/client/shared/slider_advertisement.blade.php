@@ -1,5 +1,5 @@
-<div class="instagram-box">
-    <div class="main-instagram owl-carousel owl-theme">
+<div class="brand-box">
+    <div class="main-brand owl-carousel owl-theme">
         @foreach($brands as $key => $brand)
             <div class="item">
                 <div class="ins-inner-box">

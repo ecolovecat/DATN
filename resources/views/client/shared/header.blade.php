@@ -86,7 +86,7 @@
 <!-- Start Main Top -->
 <header class="main-header">
     <!-- Start Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
+    <nav class="navbar navbar-expand-lg nav-bg navbar-default bootsnav">
         <div class="container-fluid">
             <!-- Start Header Navigation -->
             <div class="navbar-header">

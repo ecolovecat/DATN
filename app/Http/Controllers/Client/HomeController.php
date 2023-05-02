@@ -58,7 +58,7 @@ class HomeController extends Controller
         $data->name = $request->name;
         if($data->password) $data->password =  bcrypt($request->password);
         $data->update();
-        return back()->with('thanhcong','Doi thanh cong');
+        return back()->with('thanhcong','Đổi thông tin người dùng thành công.');
     }
     public function sendContact(Request $request)
     {

@@ -17,7 +17,7 @@ Không giống như những kiến thức trên internet bạn chỉ cần sử 
 					</p>
 			</div>
 			<div class="col-lg-6">
-				<div class="banner-frame" > <img class="img-thumbnail img-fluid" src="{{asset('/images/')}}" alt="" />
+				<div class="banner-frame" > <img class="img-thumbnail img-fluid" src="{{asset('front_assets/images/2.JPG')}}" alt="" />
 				</div>
 			</div>
 		</div>			

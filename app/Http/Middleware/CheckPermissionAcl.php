@@ -19,7 +19,7 @@ class CheckPermissionAcl
      */
     public function handle($request, Closure $next, $permission)
     {
-        $roleAdmin = User::find(auth()->guard('admin')->id())->roles()->select('roles.name')->pluck('name')->toArray(); 
+        $roleAdmin = User::find(auth()->guard('admin')->id())->roles()->select('roles.name')->pluck('name')->toArray();
         $listRoleOfUser = User::find(auth()->guard('admin')->id())->roles()->select('roles.id')->pluck('id')->toArray();
         $listRoleOfUser = DB::table('roles')
             ->join('permission_roles', 'roles.id', '=', 'permission_roles.role_id')
@@ -28,7 +28,7 @@ class CheckPermissionAcl
             ->select('permissions.*')
             ->get()->pluck('id')->unique();
         $checkPermission = Permission::where('name', $permission)->value('id');
-        if ( $listRoleOfUser->contains($checkPermission)) return $next($request);        
+        if ( $listRoleOfUser->contains($checkPermission)) return $next($request);
         return abort(401);
     }
 }

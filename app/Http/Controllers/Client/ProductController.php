@@ -52,7 +52,10 @@ class ProductController extends Controller
     public function product_detail(Request $request)
     {
         $userId = Auth::user();
-        $suggest = $this->recomendedRepository->recommendProducts($userId->id,$request->id, 3);
+        $suggest = [];
+        if ($userId) {
+            $suggest = $this->recomendedRepository->recommendProducts($userId->id,$request->id, 3);
+        }
         $product = $this->productRepository->find($request->id);
         $suggestProduct = $this->productRepository->getProducts($suggest);
         $productsInCategory = $this->productRepository->getProductSameCategory($product->category_id, $request->id);

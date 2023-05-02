@@ -162,7 +162,7 @@
 }
 /*header*/
  .main-top{
-     background: #3993d4;
+     background: #652193;
      padding: 10px 0px;
 }
  .custom-select-box{
@@ -281,6 +281,9 @@
 /* Navbar Atribute ------*/
  .attr-nav > ul > li > a{
      padding: 28px 15px;
+}
+.nav-bg {
+    background-color: rgb(228, 226, 226) !important;
 }
  ul.cart-list > li.total > .btn{
      border-bottom: solid 1px #cfcfcf !important;
@@ -1060,7 +1063,7 @@
      border-right-color: #d33b33 !important;
 }
 /*------------------------------------------------------------------ Instagram Feed -------------------------------------------------------------------*/
- .instagram-box{
+ .brand-box{
      padding: 70px 0px;
      /*background: url(../images/ins-bg.jpg) no-repeat center center;*/
      background-size: auto auto;
@@ -1072,7 +1075,7 @@
      position: relative;
      z-index: -9999;
 }
- .instagram-box::before{
+ .brand-box::before{
      /*background: rgba(0,0,0,0.9);*/
     /* background: #12b13485;*/
     background: linear-gradient(135deg,#94c551 50%,#94c551 50%,#94c551 50%);
@@ -1084,7 +1087,7 @@
      position: absolute;
      z-index: 0;
 }
- .main-instagram.owl-carousel .owl-nav button.owl-prev{
+ .main-brand.owl-carousel .owl-nav button.owl-prev{
      background: #de780fc4;
      position: absolute;
      z-index: 1;
@@ -1104,7 +1107,7 @@
      -o-transition: all 0.3s ease;
      transition: all 0.3s ease;
 }
- .main-instagram.owl-carousel .owl-nav button.owl-next{
+ .main-brand.owl-carousel .owl-nav button.owl-next{
      background: #de780fc4;
      position: absolute;
      z-index: 1;
@@ -1124,7 +1127,7 @@
      -o-transition: all 0.3s ease;
      transition: all 0.3s ease;
 }
- .main-instagram.owl-carousel .owl-nav button.owl-next:hover, .main-instagram.owl-carousel .owl-nav button.owl-prev:hover{
+ .main-brand.owl-carousel .owl-nav button.owl-next:hover, .main-brand.owl-carousel .owl-nav button.owl-prev:hover{
      background: #d33b33;
 }
  .ins-inner-box{
@@ -1166,7 +1169,7 @@
 /* Footer Main */
  .footer-main{
      padding: 70px 0px;
-     background: #191b19d4;
+     background: #304330d4;
 }
  .footer-widget h4 {
      color: #ffffff;

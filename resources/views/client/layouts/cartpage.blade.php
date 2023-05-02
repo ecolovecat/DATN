@@ -66,7 +66,7 @@
                                             </td>
                                             <td class="remove-pr">
                                                 <button value="{{$item['id']}}" class="btn btn-danger btn-sm remove-from-cart" >
-                                                    X
+                                                    -
                                                 </button>
                                             </td>
                                         </tr>
@@ -116,7 +116,7 @@
     </div>
 </div>
 @endsection
-@section('script_cart')
+<!-- @section('script_cart')
 <script>
     $('.remove-from-cart').click(function(){
         $('#exampleModal').modal('show'); 
@@ -153,4 +153,4 @@
         }
     });
 </script>
-@endsection
+@endsection -->

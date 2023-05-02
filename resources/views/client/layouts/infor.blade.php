@@ -19,7 +19,7 @@
 				!!}
 				<span class="text-danger">{{ $errors->first('name')}}</span>
 			</div>
-			<div class="form-group" style="margin-left: 60px;">
+			<div class="form-group" style="margin-left: 117px;">
 				{{ Form::label('Password: ','',['class' => 'font-weight-bold']) }}
 				{!! Form::text('password', '', [
 					'class' => 'form-control',
@@ -28,9 +28,8 @@
 				!!}
 				<span class="text-danger">{{ $errors->first('password')}}</span>
 			</div>
-			
-			<div class="form-group text-right" style="margin-left: 20px;margin-top: 10px;">
-				{{ Form::submit('Lưu',['class' => 'font-weight-bold text-white btn bg-color-green mt-4']) }}
+			<div class="form-group text-right" style="margin-left: 197px;margin-top: 10px;">
+				{{ Form::submit('Lưu',['class' => 'font-weight-bold text-white btn btn-primary mt-4']) }}
 			</div>
 		</div>
 	</div>

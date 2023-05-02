@@ -118,16 +118,4 @@ class RecomenedRepository implements RecomendedInterface
 
         return $recommendedProducts;
     }
-
-    // Test the function by recommending 3 products to user with ID 1
-    // $userId = 1;
-    // $n = 3;
-    // $recommendedProducts = recommendProducts($users, $userId, $n);
-
-    // // Print recommended products
-    // echo "Recommended products for user with ID $userId:\n";
-    // foreach ($recommendedProducts as $product) {
-    //   echo "- " . $product['name'] . "\n";
-    // }
-
 }
