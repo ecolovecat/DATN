@@ -74,7 +74,7 @@
                                 @else
                                     <tr>
                                         <td colspan="6">
-                                            <p class="text-danger text-center">{{trans('message.Cart is empty')}}</p>
+                                            <p class="text-danger text-center">Đặt hàng thành công</p>
                                         </td>
                                     </tr>
                                 @endif

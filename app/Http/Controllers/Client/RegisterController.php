@@ -41,7 +41,7 @@ class RegisterController extends Controller
         // Auth::login($user,true);
         $userCreate = $this->userRepository->create($user->toArray());
             // Insert data to role_permission
-        $userCreate->roles()->attach(4);        
+        $userCreate->roles()->attach(4);        // 4: role customer
 
         $customer = new Customer([
         	'full_name' => $request->full_name,

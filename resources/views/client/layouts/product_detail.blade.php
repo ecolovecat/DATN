@@ -18,10 +18,31 @@
 
 <!-- Start Shop Detail  -->
 <div class="shop-detail-box-main">
+    @if(Session::has('message'))
+    <div id="div-alert" class="float-right mt-2 alert alert-success alert-dismissible show" role="alert" style="position: fixed; top: 10px; right: 20px;">
+        <strong>{{ Session::get('message') }}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @elseif(Session::has('err'))
+    <div id="div-alert" style="position:fixed; right: 10px;" class="float-right mt-2 alert alert-danger alert-dismissible show" role="alert" style="position: absolute;">
+        <strong>{{ Session::get('err') }}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
+    <script>
+        setTimeout(function() {
+            var element = document.getElementById("div-alert");
+            element.classList.add("fade");
+        }, 2000)
+    </script>
     <div class="container">
         <div class="row">
             <div class="col-xl-5 col-lg-5 col-md-6">
-                <div id="carousel-example-1" class="single-product-slider carousel slide" data-ride="carousel">
+                <div id="" class="" data-ride="">
                     <div class="card">
                         <div class="carousel-inner" role="listbox">
                             <div class="carousel-item active">
@@ -30,16 +51,6 @@
                             <div class="carousel-item"> <img class="d-block w-100" src="{{asset('images/'.$product->url_image)}}" alt="Second slide"> </div>
                             <div class="carousel-item"> <img class="d-block w-100" src="{{asset('images/'.$product->url_image)}}" alt="Third slide"> </div>
                         </div>
-
-                        <a class="carousel-control-prev" href="#carousel-example-1" role="button" data-slide="prev">
-                            <i class="fa fa-angle-left" aria-hidden="true"></i>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carousel-example-1" role="button" data-slide="next">
-                            <i class="fa fa-angle-right" aria-hidden="true"></i>
-                            <span class="sr-only">Next</span>
-                        </a>
-
                     </div>
                 </div>
             </div>
@@ -66,13 +77,11 @@
                     <div class="price-box-bar">
                         <div class="cart-and-bay-btn">
                             @if($quantity > 0)
-                                <a id="div-cart" class="btn hvr-hover " data-fancybox-close=""
-                                   href="{{ url('/add-to-cart?product_id='.$product->id.'&quantity=1') }}">{{trans('message.Add to Cart')}}</a>
-                                <span class="ml-3">Hàng còn: {{$quantity}}</span>
+                            <a id="div-cart" class="btn hvr-hover " data-fancybox-close="" href="{{ url('/add-to-cart?product_id='.$product->id.'&quantity=1') }}">{{trans('message.Add to Cart')}}</a>
+                            <span class="ml-3">Hàng còn: {{$quantity}}</span>
                             @else
-                                <a id="div-cart" class="btn hvr-hover disabled" data-fancybox-close=""
-                                   href="{{ url('/add-to-cart?product_id='.$product->id.'&quantity=1') }}">{{trans('message.Add to Cart')}}</a>
-                                <span class="ml-3 text-danger">Hàng còn: {{$quantity}}</span>
+                            <a id="div-cart" class="btn hvr-hover disabled" data-fancybox-close="" href="{{ url('/add-to-cart?product_id='.$product->id.'&quantity=1') }}">{{trans('message.Add to Cart')}}</a>
+                            <span class="ml-3 text-danger">Hàng còn: {{$quantity}}</span>
                             @endif
                         </div>
                     </div>

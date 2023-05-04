@@ -194,7 +194,7 @@ class CartController extends Controller
             $partnerCode = "MOMO2XCN20200620";
             $accessKey = "UqIGYRJeL3A3lqV5";
             $serectkey = "NrHQ1H9bDmLu3FkOLFqFIO1rEE9qREng";
-            $orderId = $order_result->id.date("YmdHi"); // M� don h�ng
+            $orderId = $order_result->id.date("YmdHi"); // Mã đơn hàng
             $orderInfo = "Thanh toán bằng Momo";
             $amount = $request->total_amount;
             $notifyurl = url('cart-page');

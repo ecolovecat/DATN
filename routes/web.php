@@ -26,7 +26,7 @@ Route::group(['namespace'=>'Client','prefix'=>'/'],function (){
     Route::get('/return-payment','CartController@returnpayment');
     Route::get('add-to-cart', 'CartController@addToCart');
     Route::delete('remove-from-cart', 'CartController@removeFromCart');
-    Route::patch('update-cart', 'CartController@updateCart');
+    // Route::patch('update-cart', 'CartController@updateCart');
     // send gmail
     Route::get('/contact-us', 'HomeController@contact');
     Route::post('/contact-us', 'HomeController@sendContact')->name('sendcontact');

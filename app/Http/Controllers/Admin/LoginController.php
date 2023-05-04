@@ -30,7 +30,7 @@ class LoginController extends Controller
             'password' => $request->password,
         ];
         if (Auth::guard('admin')->attempt($data)){
-        	if(Auth::guard('admin')->user()->level != 3)  return redirect('/admin/dashboard');
+        	if(Auth::guard('admin')->user()->level != 1)  return redirect('/admin/dashboard');
         	else return back()->with('err','Email or Password incorrect!');
         }
         else return back()->with('err','Email or Password incorrect!');

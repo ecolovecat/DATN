@@ -8,7 +8,7 @@ use App\Repositories\Category\CategoryInterface;
 use App\Repositories\Product\ProductInterface;
 use App\Repositories\Slide\SlideInterface;
 use Illuminate\Http\Request;
-use Mail;
+use Illuminate\Support\Facades\Mail;
 use Session;
 use Auth;
 use App\Models\User;
