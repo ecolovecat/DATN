@@ -80,7 +80,7 @@ class OrderController extends Controller
     }
 
     public function update($id){
-        var_dump($id);
+        // var_dump($id);
         $order = $this->orderRepository->find($id);
         $order->order_status = !$order->order_status;
         $result = $this->orderRepository->update($id, $order->toArray());

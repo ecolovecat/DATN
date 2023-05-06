@@ -31,12 +31,16 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{asset('front_assets/css/custom.css')}}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
 </head>
 
 <body id="bodycontent">
     @include('client.shared.header')
     @yield('content')
     @include('client.shared.footer')
+    @include('client.shared.chat')
 
     <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
     <!-- ALL JS FILES -->

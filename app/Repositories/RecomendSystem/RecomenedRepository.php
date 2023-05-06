@@ -6,6 +6,29 @@ use App\Repositories\RecomendSystem\RecomendedInterface;
 
 class RecomenedRepository implements RecomendedInterface
 {
+    private $users = [
+        [
+            'id' => 16,
+            'purchase_history' => [1, 2, 3, 30, 31],
+        ],
+        [
+            'id' => 19,
+            'purchase_history' => [1, 30, 32, 36],
+        ],
+        [
+            'id' => 21,
+            'purchase_history' => [31, 32, 35],
+        ],
+        [
+            'id' => 19,
+            'purchase_history' => [1, 2, 29],
+        ],
+        [
+            'id' => 20,
+            'purchase_history' => [29, 30, 31],
+        ],
+    ];
+
     // Function to calculate similarity between two users
     function calculateSimilarity($userA, $userB)
     {
@@ -22,100 +45,81 @@ class RecomenedRepository implements RecomendedInterface
     function recommendProducts($userId, $pId, $n)
     {
         // fake data
-        $users = [
-            [
-                'id' => 1,
-                'purchase_history' => [1, 2, 3, 30, 31],
-            ],
-            [
-                'id' => 2,
-                'purchase_history' => [1, 30, 32, 36],
-            ],
-            [
-                'id' => 3,
-                'purchase_history' => [31, 32, 35],
-            ],
-            [
-                'id' => 19,
-                'purchase_history' => [1, 2, 29],
-            ],
-            [
-                'id' => 20,
-                'purchase_history' => [29, 30, 31],
-            ],
-        ];
+        $users = $this->users;
 
-
-        // Get the user's purchase history
-        $userPurchaseHistory = null;
-
-        foreach ($users as $user) {
-            if ($user['id'] == $userId) {
-                $userPurchaseHistory = $user['purchase_history'];
-                break;
-            }
-        }
-        $similarUsers = null;
-
-        // Loop through all other users
-        foreach ($users as $user) {
-            // Skip current user
-            if ($user['id'] == $userId) {
-                continue;
-            }
-
-            // Calculate similarity between users
-            $similarity = $this->calculateSimilarity($userPurchaseHistory, $user['purchase_history']);
-
-            // Add to list of similar users
-            $similarUsers[$user['id']] = $similarity;
-        }
-
-        // Sort similar users by similarity score
-        arsort($similarUsers);
-
-        // Get top n similar users
-        $topSimilarUsers = array_slice($similarUsers, 0, $n, true);
-
-        // Get products purchased by similar users
-        $similarProducts = [];
-        foreach ($topSimilarUsers as $similarUserId => $similarity) {
-            $purchases = null;
+        try {
+            // Get the user's purchase history
+            $userPurchaseHistory = null;
 
             foreach ($users as $user) {
-                if ($user['id'] == $similarUserId) {
-                    $purchases = $user['purchase_history'];
+                if ($user['id'] == $userId) {
+                    $userPurchaseHistory = $user['purchase_history'];
                     break;
                 }
             }
+            $similarUsers = null;
 
-            foreach ($purchases as $productId) {
-                if (!in_array($productId, $userPurchaseHistory) && !isset($similarProducts[$productId])) {
-                    $similarProducts[$productId] = 0;
+            // Loop through all other users
+            foreach ($users as $user) {
+                // Skip current user
+                if ($user['id'] == $userId) {
+                    continue;
                 }
-                if (isset($similarProducts[$productId])) {
-                    $similarProducts[$productId] += $similarity;
-                } else {
-                    $similarProducts[$productId] = $similarity;
+
+                // Calculate similarity between users
+                $similarity = $this->calculateSimilarity($userPurchaseHistory, $user['purchase_history']);
+
+                // Add to list of similar users
+                $similarUsers[$user['id']] = $similarity;
+            }
+
+            // Sort similar users by similarity score
+            arsort($similarUsers);
+
+            // Get top n similar users
+            $topSimilarUsers = array_slice($similarUsers, 0, $n, true);
+
+            // Get products purchased by similar users
+            $similarProducts = [];
+            foreach ($topSimilarUsers as $similarUserId => $similarity) {
+                $purchases = null;
+
+                foreach ($users as $user) {
+                    if ($user['id'] == $similarUserId) {
+                        $purchases = $user['purchase_history'];
+                        break;
+                    }
+                }
+
+                foreach ($purchases as $productId) {
+                    if (!in_array($productId, $userPurchaseHistory) && !isset($similarProducts[$productId])) {
+                        $similarProducts[$productId] = 0;
+                    }
+                    if (isset($similarProducts[$productId])) {
+                        $similarProducts[$productId] += $similarity;
+                    } else {
+                        $similarProducts[$productId] = $similarity;
+                    }
                 }
             }
 
+            // Sort similar products by similarity score
+            arsort($similarProducts);
+
+
+            // Get top n similar products
+            $topSimilarProducts = array_slice($similarProducts, 0, $n, true);
+
+            // Get recommended products
+            $recommendedProducts = [];
+            foreach ($topSimilarProducts as $productId => $similarity) {
+                if ($productId == $pId) continue;
+                $recommendedProducts[] = $productId;
+            }
+
+            return $recommendedProducts;
+        } catch (\Throwable $th) {
+            return [];
         }
-
-        // Sort similar products by similarity score
-        arsort($similarProducts);
-
-
-        // Get top n similar products
-        $topSimilarProducts = array_slice($similarProducts, 0, $n, true);
-
-        // Get recommended products
-        $recommendedProducts = [];
-        foreach ($topSimilarProducts as $productId => $similarity) {
-            if ($productId == $pId) continue;
-            $recommendedProducts[] = $productId;
-        }
-
-        return $recommendedProducts;
     }
 }
